@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { ChakraProvider } from '@chakra-ui/react'
-import NavBar from './components/navBar/navBar'
-import ItemListContainer from './components/ItemListContainer/ItemListContainer'
+import { ChakraProvider, Flex } from '@chakra-ui/react'
+import MainLayout from './layout/MainLayout'
+import { ProductData } from './data/ProductData'
+import { MainRouter } from './routes'
 
 
 function App() {
@@ -10,11 +11,14 @@ function App() {
   return (
     <>
       <ChakraProvider>
-        <NavBar/> 
-        <ItemListContainer greeting={"Welcome to my Shop!"}/>
+        <MainRouter />
       </ChakraProvider>
     </>
   )
 }
 
 export default App
+
+{/*         <MainLayout>
+          <ItemListContainer productos={ProductData}/>
+        </MainLayout> */}

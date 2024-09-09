@@ -2,29 +2,40 @@ import {
     Box,
     Flex,
     Avatar,
-    Text,
     Button,
     Menu,
     MenuButton,
     MenuList,
     MenuItem,
     MenuDivider,
-    useDisclosure,
     useColorModeValue,
     Stack,
     useColorMode,
     Center,
 } from '@chakra-ui/react'
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
-import CartWidget from "../CartWidget/CartWidget"
+import { CartWidget } from '../CartWidget'
+import { Link } from 'react-router-dom'
+import { useCategory } from '../../hooks'
 
-const NavBar = () => {
+export const NavBar = () => {
     const { colorMode, toggleColorMode } = useColorMode()
+    const {category} = useCategory();
     return (
         <>
             <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
                 <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-                    <Box>LeoStore</Box>
+                    <Box color={'rgb(118, 40, 126)'} fontSize={'4vh'} fontWeight={'500'}><Link to="/">LeoStore</Link></Box>
+                    <Menu>
+                        <MenuButton as={Link} cursor="pointer" style={{ marginLeft: 30 }}>
+                            Dynamic Menu
+                        </MenuButton>
+                        <MenuList height={"38vh"} overflowY={'scroll'}>
+                            {category.map((option) => (
+                                <MenuItem key={option.slug}><Link to={`./category/${option.slug}`}>{option.name}</Link></MenuItem>
+                            ))}
+                        </MenuList>
+                    </Menu>
 
                     <Flex alignItems={'center'}>
                         <Stack direction={'row'} spacing={7}>
@@ -70,5 +81,3 @@ const NavBar = () => {
             </Box>
         </>)
 }
-
-export default NavBar;
