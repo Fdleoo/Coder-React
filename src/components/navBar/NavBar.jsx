@@ -16,11 +16,13 @@ import {
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 import { CartWidget } from '../CartWidget'
 import { Link } from 'react-router-dom'
-import { useCategory } from '../../hooks'
+/* import { createProductsFirestore } from '../../helpers' */
+import { useItemCollection } from '../../hooks'
+
 
 export const NavBar = () => {
     const { colorMode, toggleColorMode } = useColorMode()
-    const {category} = useCategory();
+    const { items } = useItemCollection('categories');
     return (
         <>
             <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
@@ -28,15 +30,17 @@ export const NavBar = () => {
                     <Box color={'rgb(118, 40, 126)'} fontSize={'4vh'} fontWeight={'500'}><Link to="/">LeoStore</Link></Box>
                     <Menu>
                         <MenuButton as={Link} cursor="pointer" style={{ marginLeft: 30 }}>
-                            Dynamic Menu
+                            Categorias
                         </MenuButton>
-                        <MenuList height={"38vh"} overflowY={'scroll'}>
-                            {category.map((option) => (
-                                <MenuItem key={option.slug}><Link to={`./category/${option.slug}`}>{option.name}</Link></MenuItem>
+                        <MenuList height={"content-fix"} overflowY={"scroll"}>
+                            {items.map((category) => (
+                                <MenuItem key={category.slug}>
+                                    <Link to={`/category/${category.slug}`}>{category.name}</Link>
+                                </MenuItem>
                             ))}
                         </MenuList>
                     </Menu>
-
+{/*                     <Button onClick={() => createProductsFirestore('products')}>Crear productos</Button> */}
                     <Flex alignItems={'center'}>
                         <Stack direction={'row'} spacing={7}>
                             <CartWidget />

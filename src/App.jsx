@@ -1,8 +1,7 @@
 import { useState } from 'react'
-import { ChakraProvider, Flex } from '@chakra-ui/react'
-import MainLayout from './layout/MainLayout'
-import { ProductData } from './data/ProductData'
+import { ChakraProvider } from '@chakra-ui/react'
 import { MainRouter } from './routes'
+import { CartProvider } from './context'
 
 
 function App() {
@@ -11,7 +10,9 @@ function App() {
   return (
     <>
       <ChakraProvider>
+        <CartProvider>
         <MainRouter />
+        </CartProvider>
       </ChakraProvider>
     </>
   )
@@ -19,6 +20,3 @@ function App() {
 
 export default App
 
-{/*         <MainLayout>
-          <ItemListContainer productos={ProductData}/>
-        </MainLayout> */}

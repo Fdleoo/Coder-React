@@ -12,6 +12,10 @@ export async function getProductByCategory(id) {
     return await axios.get(`https://dummyjson.com/products/category/${id}`);
 }
 
-export async function getCategories(){
-    return await axios.get('https://dummyjson.com/products/categories')
-}
+
+
+
+
+/* export async function getAllProducts() {
+    return await axios.get('https://rickandmortyapi.com/api/character');
+} */

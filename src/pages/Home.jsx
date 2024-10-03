@@ -1,11 +1,11 @@
 import React from 'react'
 import { ItemListContainer, NavBar } from '../components'
-import { useProducts } from '../hooks'
+import { useItemCollection } from '../hooks'
 
 
 export const Home = () => {
     
-    const {products, loading} = useProducts();
+    const {items, loading} = useItemCollection('products');
     
-    return <ItemListContainer productos={products}/>
+    return <ItemListContainer productos={items}/>
 }

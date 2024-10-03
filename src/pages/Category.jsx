@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router'
 import { ItemListContainer } from '../components';
-import { useCategory, useProductsByCategory } from '../hooks';
+import { useProductsByCategory } from '../hooks';
 
 
 export const Category = () => {
